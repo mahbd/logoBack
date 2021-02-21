@@ -9,24 +9,45 @@
      page_id="<PAGE_ID>">
 </div>
 
+<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default"
+     data-auto-logout-link="true" data-use-continue-as="false"></div>
+
 </body>
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=429031561679245&autoLogAppEvents=1"
+        nonce="ZGXi4HIi"></script>
 <script>
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '429031561679245',
-            autoLogAppEvents: true,
+            appId: '{your-app-id}',
+            cookie: true,
             xfbml: true,
-            version: 'v9.0'
+            version: '{api-version}'
         });
+
+        FB.AppEvents.logPageView();
+
     };
+
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
+        if (d.getElementById(id)) {
+            return;
+        }
         js = d.createElement(s);
         js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+{#<script>#}
+{#    (function (d, s, id) {#}
+{#        var js, fjs = d.getElementsByTagName(s)[0];#}
+{#        if (d.getElementById(id)) return;#}
+{#        js = d.createElement(s);#}
+{#        js.id = id;#}
+{#        js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";#}
+{#        fjs.parentNode.insertBefore(js, fjs);#}
+{#    }(document, 'script', 'facebook-jssdk'));#}
+{#</script>#}
 </html>
