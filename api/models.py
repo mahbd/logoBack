@@ -19,3 +19,10 @@ class Message(models.Model):
     email = models.EmailField(blank=True, null=True)
     name = models.CharField(max_length=255)
     message = models.TextField()
+
+
+class Work(models.Model):
+    name = models.CharField(max_length=255)
+    about = models.TextField(blank=True, null=True)
+    image = models.CharField(max_length=255, blank=True, null=True)
+    url = models.URLField(blank=True, null=True)

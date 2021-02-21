@@ -5,7 +5,8 @@ from . import views
 
 router = DefaultRouter()
 router.register('site-data', views.SiteDataViewSet, 'site-data')
+router.register('works', views.WorkDataViewSet, 'works')
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]

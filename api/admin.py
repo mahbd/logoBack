@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from django_admin_json_editor import JSONEditorWidget
 
-from .models import SiteData, Message, NewsletterSubscriber
+from .models import SiteData, Message, NewsletterSubscriber, Work
 
 
 class JSONModelAdminForm(forms.ModelForm):
@@ -22,3 +22,4 @@ class JSONModelAdmin(admin.ModelAdmin):
 
 admin.site.register(Message)
 admin.site.register(NewsletterSubscriber)
+admin.site.register(Work)
