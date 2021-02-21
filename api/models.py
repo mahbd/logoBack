@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
 
 
@@ -24,5 +25,6 @@ class Message(models.Model):
 class Work(models.Model):
     name = models.CharField(max_length=255)
     about = models.TextField(blank=True, null=True)
+    rating = models.IntegerField(default=5, validators=[MinValueValidator(1), MaxValueValidator(5)])
     image = models.CharField(max_length=255, blank=True, null=True)
     url = models.URLField(blank=True, null=True)
