@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messenger</title>
+</head>
+<body>
+<div class="fb-customerchat"
+     page_id="<PAGE_ID>">
+</div>
+
+</body>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '429031561679245',
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v9.0'
+        });
+    };
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+</html>
