@@ -1,9 +1,13 @@
 from collections import OrderedDict
 
+from django.core.mail import send_mail
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from rest_framework import viewsets, generics
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 
+from logo import settings
 from .models import SiteData, Work, NewsletterSubscriber
 from .serializers import SiteDataSerializer, WorkSerializer, NewsletterSubscriberSerializer
 
@@ -37,3 +41,19 @@ class WorkDataViewSet(viewsets.ModelViewSet):
 class NewsletterSubscriberView(generics.CreateAPIView):
     queryset = NewsletterSubscriber.objects.all()
     serializer_class = NewsletterSubscriberSerializer
+
+
+@receiver(post_save, sender=NewsletterSubscriber)
+def subscribe_newsletter(sender, instance=None, created=False, **kwargs):
+    if created:
+        send_mail(subject='Subscribed successfully',
+                  message='Thanks for subscribing newsletter. We will send you important event information.',
+                  from_email=settings.EMAIL_HOST_USER,
+                  recipient_list=[instance.email],
+                  fail_silently=False)
+    else:
+        send_mail(subject='Email changed successfully',
+                  message='Thanks for subscribing newsletter. We will send you important event information.',
+                  from_email=settings.EMAIL_HOST_USER,
+                  recipient_list=[instance.email],
+                  fail_silently=False)
