@@ -23,5 +23,5 @@ class NewsletterSubscriberSerializer(serializers.ModelSerializer):
 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = NewsletterSubscriber
+        model = Message
         fields = '__all__'
