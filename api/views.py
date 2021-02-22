@@ -8,8 +8,8 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 
 from logo import settings
-from .models import SiteData, Work, NewsletterSubscriber
-from .serializers import SiteDataSerializer, WorkSerializer, NewsletterSubscriberSerializer
+from .models import SiteData, Work, NewsletterSubscriber, Message
+from .serializers import SiteDataSerializer, WorkSerializer, NewsletterSubscriberSerializer, MessageSerializer
 
 
 class SiteDataViewSet(viewsets.ReadOnlyModelViewSet):
@@ -41,6 +41,11 @@ class WorkDataViewSet(viewsets.ModelViewSet):
 class NewsletterSubscriberView(generics.CreateAPIView):
     queryset = NewsletterSubscriber.objects.all()
     serializer_class = NewsletterSubscriberSerializer
+
+
+class MessageView(generics.CreateAPIView):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
 
 
 @receiver(post_save, sender=NewsletterSubscriber)

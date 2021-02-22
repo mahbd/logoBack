@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import SiteData, Work, NewsletterSubscriber
+from .models import SiteData, Work, NewsletterSubscriber, Message
 
 
 class SiteDataSerializer(serializers.ModelSerializer):
@@ -16,6 +16,12 @@ class WorkSerializer(serializers.ModelSerializer):
 
 
 class NewsletterSubscriberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewsletterSubscriber
+        fields = '__all__'
+
+
+class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewsletterSubscriber
         fields = '__all__'

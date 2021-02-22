@@ -10,5 +10,6 @@ router.register('works', views.WorkDataViewSet, 'works')
 
 urlpatterns = [
     path('subscribe/', csrf_exempt(views.NewsletterSubscriberView.as_view())),
+    path('message/', csrf_exempt(views.MessageView.as_view())),
     path('', include(router.urls)),
 ]
