@@ -15,11 +15,15 @@ class JSONModelAdminForm(forms.ModelForm):
 
 
 @admin.register(SiteData)
-class JSONModelAdmin(admin.ModelAdmin):
+class SiteDataAdmin(admin.ModelAdmin):
     list_display = ('category', )
     form = JSONModelAdminForm
 
 
+@admin.register(NewsletterSubscriber)
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ('id', 'email')
+
+
 admin.site.register(Message)
-admin.site.register(NewsletterSubscriber)
 admin.site.register(Work)

@@ -1,11 +1,11 @@
 from collections import OrderedDict
 
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 
-from .models import SiteData, Work
-from .serializers import SiteDataSerializer, WorkSerializer
+from .models import SiteData, Work, NewsletterSubscriber
+from .serializers import SiteDataSerializer, WorkSerializer, NewsletterSubscriberSerializer
 
 
 class SiteDataViewSet(viewsets.ReadOnlyModelViewSet):
@@ -14,7 +14,7 @@ class SiteDataViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SiteDataSerializer
 
 
-class Pagination12(LimitOffsetPagination):
+class Pagination(LimitOffsetPagination):
     default_limit = 12
 
     def get_paginated_response(self, data):
@@ -28,7 +28,12 @@ class Pagination12(LimitOffsetPagination):
 
 
 class WorkDataViewSet(viewsets.ModelViewSet):
-    pagination_class = Pagination12
+    pagination_class = Pagination
     lookup_field = 'category'
     queryset = Work.objects.all()
     serializer_class = WorkSerializer
+
+
+class NewsletterSubscriberView(generics.CreateAPIView):
+    queryset = NewsletterSubscriber.objects.all()
+    serializer_class = NewsletterSubscriberSerializer
